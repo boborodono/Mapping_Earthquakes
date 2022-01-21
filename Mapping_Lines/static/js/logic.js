@@ -44,6 +44,3 @@ let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/{styleId}/til
 
 // Then we add our 'graymap' tile layer to the map.
 streets.addTo(map);
-
-// Then we add our 'graymap' tile layer to the map.
-streets.addTo(map);
