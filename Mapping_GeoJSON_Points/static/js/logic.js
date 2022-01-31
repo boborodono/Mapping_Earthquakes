@@ -1,5 +1,5 @@
 // Add console.log to check to see if our code is working.
-// console.log("working");
+console.log("working");
 
 // We create the satellite street view tile layer that will be the background of our map.
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/{styleId}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
