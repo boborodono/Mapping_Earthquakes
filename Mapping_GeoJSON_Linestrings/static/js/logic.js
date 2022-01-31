@@ -16,7 +16,7 @@ let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/{styleId}/tiles/
     styleId: "dark-v10",
     accessToken: API_KEY
 });
-cd
+
 // Create a base layer map that holds both maps
 let baseMaps = {
     Street: streets,
@@ -25,7 +25,7 @@ let baseMaps = {
 
 // Create the map object with a center and zoom level.
 let map = L.map('mapid', {
-    center: [30, 30],
+    center: [44.0, -80],
     zoom: 2,
     layers: [streets]
 });
@@ -33,12 +33,20 @@ let map = L.map('mapid', {
 // Pass pur map layers our layers control annd add the layers to the map.
 L.control.layers(baseMaps).addTo(map);
 
-// Accessing the airport GeoJSON UR
-let airportData = "https://raw.githubusercontent.com/boborodono/Mapping_Earthquakes/Mapping_GeoJSON_Points/Mapping_GeoJSON_Points/static/js/majorAirports.json";
+// Accessing the Toronto Airline Routes GeoJSON URL
+let torontoData = "https://raw.githubusercontent.com/boborodono/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/Mapping_GeoJSON_Linestrings/static/js/torontoRoutes.json";
 
 // Grabbing pur GeoJSON data.
-d3.json(airportData).then(function(data) {
+d3.json(torontoData).then(function(data) {
         console.log(data);
-    // Creating a GeoJSON layer with the retrieved data.
-    L.geoJson(data).addTo(map);
+// Creating a GeoJSON layer with the retrieved data.
+L.geoJson(data, {
+    color: "#ffffa1",
+    weight: 2,
+    onEachFeature: function(feature, layer)  {
+        layer.bindPopup("<h3> Airline: " + feature.properties.airline + "</h3> <hr><h3> Destination: " + feature.properties.dst + "</h3>");
+
+    }
+})
+.addTo(map);
 });
