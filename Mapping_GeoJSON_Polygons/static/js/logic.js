@@ -34,19 +34,11 @@ let map = L.map('mapid', {
 L.control.layers(baseMaps).addTo(map);
 
 // Accessing the Toronto Airline Routes GeoJSON URL
-let torontoData = "https://raw.githubusercontent.com/boborodono/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/Mapping_GeoJSON_Linestrings/static/js/torontoRoutes.json";
+let torontoHoods = "https://raw.githubusercontent.com/boborodono/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/Mapping_GeoJSON_Polygons/static/js/torontoNeighborhoods.json";
 
 // Grabbing pur GeoJSON data.
-d3.json(torontoData).then(function(data) {
+d3.json(torontoHoods).then(function(data) {
         console.log(data);
 // Creating a GeoJSON layer with the retrieved data.
-L.geoJson(data, {
-    color: "#ffffa1",
-    weight: 2,
-    onEachFeature: function(feature, layer)  {
-        layer.bindPopup("<h3> Airline: " + feature.properties.airline + "</h3> <hr><h3> Destination: " + feature.properties.dst + "</h3>");
-
-    }
-})
-.addTo(map);
+L.geoJson(data).addTo(map);
 });
