@@ -30,7 +30,7 @@ let map = L.map('mapid', {
     layers: [streets]
 });
 
-// Pass pur map layers our layers control annd add the layers to the map.
+// Pass our map layers our layers control and add the layers to the map.
 L.control.layers(baseMaps).addTo(map);
 
 // Accessing the Toronto Airline Routes GeoJSON URL
